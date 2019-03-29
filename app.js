@@ -13,23 +13,28 @@ var express = require("express"),
 
 // seedDB();
 
-//requring routes
+//requiring routes
 var commentRoutes    = require("./routes/comments"),
-    campgroundRoutes = require("./routes/campgrounds"),
+    campgroundRoutes = require("./routes/campgrounds"), 
     indexRoutes      = require("./routes/index.js");
   
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-// mongoose.connect("mongodb://localhost:27017/Yelp_camp", { useNewUrlParser: true });
-mongoose.connect("mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/yelpcamp?retryWrites=true", { useNewUrlParser: true });
 
-// var url = process.env."mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/test?retryWrites=true" || "mongodb://localhost/yelp_camp_v10";
+
+ mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/Yelp_camp", { useNewUrlParser: true });
+//mongoose.connect("mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/yelpcamp?retryWrites=true", { useNewUrlParser: true });
+
+
+//var url = process.env.DATABASEURL || "mongodb://localhost:27017/Yelp_camp";
 // mongoose.connect(url);
 
-mongoose.connect("mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/test?retryWrites=true");
+
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+//mongoose.connect("mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/yelpcamp?retryWrites=true", { useNewUrlParser: true });
 
 
 //PAssport CONFIGURATION
