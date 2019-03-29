@@ -22,13 +22,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 
- mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
-// mongoose.connect("mongodb://localhost:27017/Yelp_camp", { useNewUrlParser: true });
+ 
+
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/Yelp_camp";
+mongoose.connect(url, { useNewUrlParser: true });
+
+//mongoose.connect("mongodb://localhost:27017/Yelp_camp", { useNewUrlParser: true });
 //mongoose.connect("mongodb+srv://surajhimanshu:26@Suraj@cluster0-hbcjq.mongodb.net/yelpcamp?retryWrites=true", { useNewUrlParser: true });
+//mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 
-
-//var url = process.env.DATABASEURL || "mongodb://localhost:27017/Yelp_camp";
-// mongoose.connect(url);
 
 
 app.use(express.static(__dirname + "/public"));
